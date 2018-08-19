@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    {# Header #}
+    <div class="parallax-container center valign-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <h2 style="font-weight: bolder">Welcome to marioBytes Media</h2>
+                    <p style="font-weight: bold; font-size: large">THE PLACE TO HELP GET YOUR WEBSITE UP AND RUNNING!</p>
+                </div>
+            </div>
+        </div>
+        <div class="parallax">
+            <img src="{{ url_for('static', filename='header.jpeg') }}">
+        </div>
+    </div>
+
+    {# Section A #}
+    <section id="section-a">
+        <div class="container">
+            <div class="col s12">
+                <h3>About:</h3>
+                <p style="font-size: large">I am currently a student studying computer science. I am currently following my passion to be a full-stack web developer. Outside of school I love learning new things whether it relates to programming or philosophy. I am a freelancer and would deliver exceptional and very friendly work.</p>
+
+            </div>
+
+            <div class="col s12" style="margin-top: 15px;">
+                <h3>Services:</h3>
+                <p style="color: #91AA9D; font-size: larger;">FULL-STACK WEB DEVELOPMENT</p>
+                <p style="font-size: large">A full stack web developer is developer that knows the ins-and-outs of the front and back end of web development. In that definition it begs the question: what is the font/back end? The front end deals with everything the user (you) are interacting with and are seeing right now. The back end deals with everything you don't see: like how users on a website are authenticated, communicating with servers, etc.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-b">
+        <div class="container">
+            <h3>Known Languages/Technologies:</h3>
+            <div class="row">
+                <div class="col l6 m6 s12">
+                    <span style="color: #91AA9D; font-size: larger;">Markup Languages/Technologies:</span>
+                    <p><b>Languages</b>: HTML, CSS</p>
+                    <span><b style="color: #91AA9D;">Technologies</b>: MaterializeCSS, Bootstrap, Flexbox, and CSS Grid</span>
+                </div>
+                <div class="col l6 m6 s12">
+                    <span style="color: #91AA9D; font-size: larger;">Programming Languages/Technologies:</span>
+                    <p><b>Languages</b>: Python, JavaScript, SQL</p>
+                    <span><b style="color: #91AA9D;">Technologies</b>: Flask, jQuery, and MySQL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

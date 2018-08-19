@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="container">
+            <form action="" method="POST" class="col s12 contact">
+                <legend style="text-align: center; font-weight: bold; font-size: larger">{{ legend }}</legend>
+                {{ form.hidden_tag() }}
+
+                {# Title #}
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">title</i>
+                        {{ form.title.label() }}
+
+                        {% if form.title.errors %}
+                            {{ form.title() }}
+                            <div class="card">
+                                {% for error in form.title.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.title() }}
+                         {% endif %}
+                </div>
+
+                {# Content #}
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">message</i>
+                    {{ form.content.label(for="textarea1") }}
+                        {% if form.content.errors %}
+                            {{ form.content(id="textarea1", class="materialize-textarea") }}
+                            <div class="card">
+                                {% for error in form.content.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.content(id="textarea1", class="materialize-textarea") }}
+                        {% endif %}
+                </div>
+
+                <div class="input-field col s12">
+                    {{ form.submit(class='btn') }}
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

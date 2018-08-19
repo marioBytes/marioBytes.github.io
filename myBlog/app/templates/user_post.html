@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h2>Posts by {{ user.username }} ({{ posts.total }})</h2>
+    </div>
+    {% for post in posts.items %}
+
+        <div class="container">
+            <ul class="collection">
+                <li class="collection-item avatar">
+                    <img src="{{ url_for('static', filename='pictures/' + post.author.image_file) }}" class="circle">
+                    <div class="blog-content">
+                        <h2>
+                            <a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+                        </h2>
+                        <p class="info">
+                            Posted by: <a href="{{ url_for('user_posts', username=post.author.username) }}">{{ post.author.username }}</a> on <small>{{ post.date_posted.strftime('%b %d, %Y') }}</small>
+                        </p>
+                        <p class="post-content">{{ post.content }}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    {% endfor %}
+
+        <div class="container">
+            {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                {% if page_num %}
+                    {% if posts.page == page_num %}
+                    <ul class="pagination" style="display: inline; margin: 10px;">
+                        <li class="active" style="background: #193441;">
+                            <a href="{{ url_for('user_posts', username=user.username, page=page_num) }}">{{ page_num }}</a>
+                        </li>
+                    {% else %}
+                        <li class="waves-effect">
+                            <a href="{{ url_for('user_posts', username=user.username, page=page_num) }}">{{ page_num }}</a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                {% else %}
+                {% endif %}
+            {% endfor %}
+        </div>
+
+{% endblock content %}

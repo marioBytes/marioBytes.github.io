@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <ul class="collection">
+            <li class="collection-item avatar">
+                <img src="{{ url_for('static', filename='pictures/' + post.author.image_file) }}" class="circle profile-picture">
+                <h2>{{ post.title }}</h2>
+                <p class="info">
+                    Posted by: <a href="{{ url_for('user_posts', username=post.author.username) }}">{{ post.author.username }}</a> on <small>{{ post.date_posted }}</small>
+                </p>
+                {% if post.author == current_user %}
+                    <a href="{{ url_for('update_post', post_id=post.id) }}" class="btn">Update</a>
+                    <!-- Modal Trigger -->
+                    <a href="#deleteModal" class="btn red modal-trigger">Delete</a>
+                {% endif %}
+                <p class="content">{{ post.content }}</p>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h4>Are You Sure You Want to This Delete Post?</h4>
+            <p>If you accept, you will not be able to recover any of the data.</p>
+        </div>
+        <div class="modal-footer">
+            <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
+                <input type="submit" class="btn red" value="Delete">
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
